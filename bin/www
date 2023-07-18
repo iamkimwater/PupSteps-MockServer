@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('pupstepsmockserver:server');
 var http = require('http');
+const socketIO = require('../socketIO');
 
 /**
  * Get port from environment and store in Express.
@@ -25,6 +26,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+socketIO(server, app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

@@ -7,37 +7,72 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/users/login', (req, res, next) => {
-  return res.json({
-    user: {
-      id: 1,
-      userName: '김일',
-      email: '111@example.com',
-      petsInfo: [
-        {
-          id: 1,
-          petName: "레오",
-          petAge: 3,
-          petGender: 2,
-          petBreed: 3,
-          petImageUrl: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MjBfMTIz%2FMDAxNjYwOTgzMzgwNjgx.JyoFq35-zHTYjJUKIQ-Wv3Ps0JDv3XNFUM03gYHnXM0g.ii15zCJfxuuGzVmdhmuPlvVN8VDQCMSp3yOf2mqVc70g.JPEG.ddogddogcafe%2F645.jpg&type=sc960_832',
-        }, {
-        id: 1,
-        petName: '로하',
-        petAge: 4,
-        petGender: 1,
-        petBreed: 1,
-        petImageUrl:
-            'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDZfMTU3%2FMDAxNTg4NzQyNDgyMzA4.yAusLfS-3x3yt2LWxMJkCeu2ojZFctt1npEv-aVM75Qg.rWigEnHlc7cMwU9sNRIeM4OgWqbC8k-krR7rhClW8egg.JPEG.520dna%2F%25B0%25AD%25BE%25C6%25C1%25F6%25BB%25E7%25C1%25F80015.jpg&type=sc960_832',
+  const {cookie} = req.headers;
+  if (cookie === '2') {
+    return res.json( {
+      user: {
+        id: 2,
+        userName: '김유아',
+        email: '222@example.com',
+        petsInfo: [
+          {
+            id: 2,
+            petName: "레오",
+            petAge: 3,
+            petGender: 2,
+            petBreed: 3,
+            petImageUrl: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MjBfMTIz%2FMDAxNjYwOTgzMzgwNjgx.JyoFq35-zHTYjJUKIQ-Wv3Ps0JDv3XNFUM03gYHnXM0g.ii15zCJfxuuGzVmdhmuPlvVN8VDQCMSp3yOf2mqVc70g.JPEG.ddogddogcafe%2F645.jpg&type=sc960_832',
+          }, {
+            id: 2,
+            petName: '로하',
+            petAge: 4,
+            petGender: 1,
+            petBreed: 1,
+            petImageUrl:
+                'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDZfMTU3%2FMDAxNTg4NzQyNDgyMzA4.yAusLfS-3x3yt2LWxMJkCeu2ojZFctt1npEv-aVM75Qg.rWigEnHlc7cMwU9sNRIeM4OgWqbC8k-krR7rhClW8egg.JPEG.520dna%2F%25B0%25AD%25BE%25C6%25C1%25F6%25BB%25E7%25C1%25F80015.jpg&type=sc960_832',
+          }
+        ],
+        userType: 0,
+        walkInfo: {
+          id: 2,
+          walkArea: '서울시 강남구',
+          walkTime: '8:00 AM',
+        },
       }
-      ],
-      userType: 0,
-      walkInfo: {
+    })
+  } else {
+    return res.json({
+      user: {
         id: 1,
-        walkArea: '서울시 강남구',
-        walkTime: '8:00 AM',
-      },
-    }
-  })
+        userName: '김유아',
+        email: '111@example.com',
+        petsInfo: [
+          {
+            id: 1,
+            petName: "레오",
+            petAge: 3,
+            petGender: 2,
+            petBreed: 3,
+            petImageUrl: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MjBfMTIz%2FMDAxNjYwOTgzMzgwNjgx.JyoFq35-zHTYjJUKIQ-Wv3Ps0JDv3XNFUM03gYHnXM0g.ii15zCJfxuuGzVmdhmuPlvVN8VDQCMSp3yOf2mqVc70g.JPEG.ddogddogcafe%2F645.jpg&type=sc960_832',
+          }, {
+            id: 1,
+            petName: '로하',
+            petAge: 4,
+            petGender: 1,
+            petBreed: 1,
+            petImageUrl:
+                'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDZfMTU3%2FMDAxNTg4NzQyNDgyMzA4.yAusLfS-3x3yt2LWxMJkCeu2ojZFctt1npEv-aVM75Qg.rWigEnHlc7cMwU9sNRIeM4OgWqbC8k-krR7rhClW8egg.JPEG.520dna%2F%25B0%25AD%25BE%25C6%25C1%25F6%25BB%25E7%25C1%25F80015.jpg&type=sc960_832',
+          }
+        ],
+        userType: 0,
+        walkInfo: {
+          id: 1,
+          walkArea: '서울시 강남구',
+          walkTime: '8:00 AM',
+        },
+      }
+    })
+  }
 });
 
 router.get('/posts', (req, res, next) => {
@@ -49,8 +84,8 @@ router.get('/posts', (req, res, next) => {
       "createdAt": "2023-07-04",
       "postWriter": {
         id: 1,
-        userName: "김일",
-        email: "111@example.com",
+        userName: "김이",
+        email: "222@example.com",
         petsInfo: [{
           id: 1,
           petName: "로하",
@@ -130,9 +165,9 @@ router.get('/posts/:postId', function (req, res, next) {
       "content": "한강 공원에서 맥주 한 캔 들고 가볍게 1시간 정도 산책하실 분 선착순 5분 모집합니다. 댓글 달아주세요.",
       "createdAt": "2023-07-04",
       "postWriter": {
-        id: 1,
-        userName: "김일",
-        email: "111@example.com",
+        id: 2,
+        userName: "김이",
+        email: "222@example.com",
         petsInfo: [{
           id: 1,
           petName: "로하",
@@ -183,7 +218,7 @@ router.get('/comments/:postId', function (req, res, next) {
       "createdAt": "2023-07-04",
       "commentWriter": {
         id: 1,
-        userName: "김욜로",
+        userName: "김일",
         email: "111@example.com",
         petsInfo: [{
           id: 1,
@@ -201,7 +236,7 @@ router.get('/comments/:postId', function (req, res, next) {
       "createdAt": "2023-07-04",
       "commentWriter": {
         id: 2,
-        userName: "김코코",
+        userName: "김이",
         email: "222@example.com",
         petsInfo: [{
           id: 2,
@@ -218,6 +253,7 @@ router.get('/comments/:postId', function (req, res, next) {
 })
 
 router.post('/comments', function (req, res, next) {
+  const {} = req.body;
   return res.json({
     comment: {
       "id": 3,
@@ -240,5 +276,143 @@ router.post('/comments', function (req, res, next) {
     }
   });
 });
+
+router.get('/chattings/rooms', (req, res, next) => {
+  return res.json({
+    rooms: [{
+      other: {
+        id: 1,
+        userName: '김유아',
+        petsInfo: [
+          {
+            id: 2,
+            petName: "레오",
+            petAge: 3,
+            petGender: 2,
+            petBreed: 3,
+            petImageUrl: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MjBfMTIz%2FMDAxNjYwOTgzMzgwNjgx.JyoFq35-zHTYjJUKIQ-Wv3Ps0JDv3XNFUM03gYHnXM0g.ii15zCJfxuuGzVmdhmuPlvVN8VDQCMSp3yOf2mqVc70g.JPEG.ddogddogcafe%2F645.jpg&type=sc960_832',
+          }, {
+            id: 2,
+            petName: '로하',
+            petAge: 4,
+            petGender: 1,
+            petBreed: 1,
+            petImageUrl:
+                'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDZfMTU3%2FMDAxNTg4NzQyNDgyMzA4.yAusLfS-3x3yt2LWxMJkCeu2ojZFctt1npEv-aVM75Qg.rWigEnHlc7cMwU9sNRIeM4OgWqbC8k-krR7rhClW8egg.JPEG.520dna%2F%25B0%25AD%25BE%25C6%25C1%25F6%25BB%25E7%25C1%25F80015.jpg&type=sc960_832',
+          }
+        ],
+      },
+      lastMessage: '같이 산책하고 싶어요!',
+    }, {
+      other: {
+        id: 3,
+        userName: '박루비',
+      },
+      lastMessage: '뭐행?',
+    }, {
+      other: {
+        id: 4,
+        userName: '윤아름',
+      },
+      lastMessage: '나도나도!!! 같이 가장',
+    }]
+  })
+})
+
+router.get('/chattings/chats/:roomName', (req, res, next) => {
+  return res.json({
+    chats: [{
+      sender: {
+        id: 1,
+        userName: '김일',
+      },
+      receiver: {
+        id: 2,
+        userName: '김유아',
+      },
+      message: '안녕하세요!',
+    }, {
+      sender: {
+        id: 2,
+        userName: '김유아',
+      },
+      receiver: {
+        id: 1,
+        userName: '김일',
+      },
+      message: '안녕하세요! 한강 어디인가요?',
+    }, {
+      sender: {
+        id: 1,
+        userName: '김일',
+      },
+      receiver: {
+        id: 2,
+        userName: '김유아',
+      },
+      message: '반포 아니면 여의도로 가려고 합니다.',
+    }, {
+      sender: {
+        id: 2,
+        userName: '김유아',
+      },
+      receiver: {
+        id: 1,
+        userName: '김일',
+      },
+      message: '아하 저도 마침 그 근처예요ㅎㅎ',
+    }, {
+      sender: {
+        id: 2,
+        userName: '김유아',
+      },
+      receiver: {
+        id: 1,
+        userName: '김일',
+      },
+      message: '루비 성격은 어떤가요?',
+    }, {
+      sender: {
+        id: 1,
+        userName: '김일',
+      },
+      receiver: {
+        id: 2,
+        userName: '김유아',
+      },
+      message: '정말 온순하고 친구도 잘 사귀는 편입니당.',
+    }, {
+      sender: {
+        id: 1,
+        userName: '김일',
+      },
+      receiver: {
+        id: 2,
+        userName: '김유아',
+      },
+      message: '걱정 안 하셔도 될 것 같아요.',
+    }, {
+      sender: {
+        id: 2,
+        userName: '김유아',
+      },
+      receiver: {
+        id: 1,
+        userName: '김일',
+      },
+      message: '그럼 도착해서 연락드릴게요 :)',
+    }, {
+      sender: {
+        id: 1,
+        userName: '김일',
+      },
+      receiver: {
+        id: 2,
+        userName: '김유아',
+      },
+      message: '네엥ㅎㅎ',
+    }]
+  })
+})
 
 module.exports = router;
